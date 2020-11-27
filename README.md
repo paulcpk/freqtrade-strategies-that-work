@@ -1,5 +1,5 @@
 # 📈 Freqtrade Strategies That Work
-Crypto Trading Strategies for the freqtrade.io trading bot
+Crypto Trading Strategies for the [freqtrade.io](https://www.freqtrade.io/) trading bot
 
 ## Disclaimer
 *WARNING* These strategies are highly experimental and for educational purposes only. Use at your own risk. The author assumes no responsibility for your trading results.
