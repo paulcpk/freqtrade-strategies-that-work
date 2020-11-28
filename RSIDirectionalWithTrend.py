@@ -31,7 +31,7 @@ class RSIDirectionalWithTrend(IStrategy):
     # }
 
     # This attribute will be overridden if the config file contains "stoploss"
-    stoploss = -0.2
+    stoploss = -0.1
 
     # trailing stoploss
     trailing_stop = True
@@ -39,9 +39,7 @@ class RSIDirectionalWithTrend(IStrategy):
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
         dataframe['rsi'] = ta.RSI(dataframe, timeperiod=4)
-        dataframe['rsi_slow'] = ta.RSI(dataframe, timeperiod=10)
         dataframe['ema100'] = ta.EMA(dataframe, timeperiod=100)
-        dataframe['ema600'] = ta.EMA(dataframe, timeperiod=600)
 
         return dataframe
 
@@ -50,8 +48,8 @@ class RSIDirectionalWithTrend(IStrategy):
         dataframe.loc[
             (
                 # RSI crosses above 30
-                (qtpylib.crossed_above(dataframe['rsi_slow'], 25)) &
-                (dataframe['low'] > dataframe['ema600']) &  # Candle low is above EMA
+                (qtpylib.crossed_above(dataframe['rsi'], 15)) &
+                (dataframe['low'] > dataframe['ema100']) &  # Candle low is above EMA
                 # Ensure this candle had volume (important for backtesting)
                 (dataframe['volume'] > 0)
             ),
@@ -63,9 +61,9 @@ class RSIDirectionalWithTrend(IStrategy):
         dataframe.loc[
             (
                 # RSI crosses above 70
-                (qtpylib.crossed_below(dataframe['rsi_slow'], 20)) |
+                (qtpylib.crossed_above(dataframe['rsi'], 85)) |
                  # OR price is below trend ema
-                (dataframe['low'] < dataframe['ema600'])
+                (dataframe['low'] < dataframe['ema100'])
             ),
             'sell'] = 1
         return dataframe
