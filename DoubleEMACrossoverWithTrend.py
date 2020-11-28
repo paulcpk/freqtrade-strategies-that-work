@@ -5,14 +5,14 @@ import freqtrade.vendor.qtpylib.indicators as qtpylib
 import numpy  # noqa
 
 
-class MACDCrossoverWithTrend(IStrategy):
+class DoubleEMACrossoverWithTrend(IStrategy):
 
     """
     How to use it?
 
     > freqtrade download-data --timeframes 1h --timerange=20180301-20200301
-    > freqtrade backtesting --export trades -s MACDCrossoverWithTrend --timeframe 1h --timerange=20180301-20200301
-    > freqtrade plot-dataframe -s MACDCrossoverWithTrend --indicators1 ema200 --timeframe 1h --timerange=20180301-20200301
+    > freqtrade backtesting --export trades -s DoubleEMACrossoverWithTrend --timeframe 1h --timerange=20180301-20200301
+    > freqtrade plot-dataframe -s DoubleEMACrossoverWithTrend --indicators1 ema200 --timeframe 1h --timerange=20180301-20200301
 
     """
 
@@ -38,13 +38,8 @@ class MACDCrossoverWithTrend(IStrategy):
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        macd = ta.MACD(dataframe)
-        dataframe['macd'] = macd['macd']
-        dataframe['macdsignal'] = macd['macdsignal']
-        dataframe['macdhist'] = macd['macdhist']
-
-        dataframe['ema50'] = ta.EMA(dataframe, timeperiod=50)
-        dataframe['ema100'] = ta.EMA(dataframe, timeperiod=100)
+        dataframe['ema9'] = ta.EMA(dataframe, timeperiod=9)
+        dataframe['ema21'] = ta.EMA(dataframe, timeperiod=21)
         dataframe['ema200'] = ta.EMA(dataframe, timeperiod=200)
 
         return dataframe
@@ -53,10 +48,9 @@ class MACDCrossoverWithTrend(IStrategy):
 
         dataframe.loc[
             (
-                (dataframe['macd'] < 0) &  # MACD is below zero
-                # Signal crosses above MACD
-                (qtpylib.crossed_above(dataframe['macd'], dataframe['macdsignal'])) &
-                (dataframe['low'] > dataframe['ema100']) &  # Candle low is above EMA
+                # fast ema crosses above slow ema
+                (qtpylib.crossed_above(dataframe['ema9'], dataframe['ema21'])) &
+                (dataframe['low'] > dataframe['ema200']) &  # Candle low is above EMA
                 # Ensure this candle had volume (important for backtesting)
                 (dataframe['volume'] > 0)
             ),
@@ -67,9 +61,9 @@ class MACDCrossoverWithTrend(IStrategy):
 
         dataframe.loc[
             (
-                # MACD crosses above Signal
-                (qtpylib.crossed_below(dataframe['macd'], 0)) | 
-                (dataframe['low'] < dataframe['ema100'])  # OR price is below trend ema
+                # fast ema crosses below slow ema
+                (qtpylib.crossed_below(dataframe['ema9'], dataframe['ema21'])) |
+                (dataframe['low'] < dataframe['ema200']) # OR price is below trend ema
             ),
             'sell'] = 1
         return dataframe
