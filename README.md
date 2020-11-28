@@ -48,6 +48,6 @@ For more strategy inspiration and reference, try the official freqtrade strategy
 If this was of help to you, consider buying me a cup of coffee.
 Support is much appreciated and enables me to publish more stuff like this.
 
-BTC: 1KAa2twgCYz8g5Y4fFkercG7criWHi5Bxa
-ETH: 0xd91d1615c7Bc766A4AF5E9ee0684aE325bEC2261
-XLM: GCSFATTGKQYIYGMHU57ACEQLYROPHJRNIIECEBSWWOZTGTAWHIAOV5ES
+- BTC: `1KAa2twgCYz8g5Y4fFkercG7criWHi5Bxa`
+- ETH: `0xd91d1615c7Bc766A4AF5E9ee0684aE325bEC2261`
+- XLM: `GCSFATTGKQYIYGMHU57ACEQLYROPHJRNIIECEBSWWOZTGTAWHIAOV5ES`
