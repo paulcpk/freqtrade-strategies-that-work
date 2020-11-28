@@ -38,9 +38,7 @@ class RSIDirectionalWithTrend(IStrategy):
 
     def populate_indicators(self, dataframe: DataFrame, metadata: dict) -> DataFrame:
 
-        dataframe['rsi'] = ta.RSI(dataframe, timeperiod=4)
         dataframe['rsi_slow'] = ta.RSI(dataframe, timeperiod=10)
-        dataframe['ema100'] = ta.EMA(dataframe, timeperiod=100)
         dataframe['ema600'] = ta.EMA(dataframe, timeperiod=600)
 
         return dataframe
@@ -49,7 +47,7 @@ class RSIDirectionalWithTrend(IStrategy):
 
         dataframe.loc[
             (
-                # RSI crosses above 30
+                # RSI crosses above 25
                 (qtpylib.crossed_above(dataframe['rsi_slow'], 25)) &
                 (dataframe['low'] > dataframe['ema600']) &  # Candle low is above EMA
                 # Ensure this candle had volume (important for backtesting)
@@ -62,7 +60,7 @@ class RSIDirectionalWithTrend(IStrategy):
 
         dataframe.loc[
             (
-                # RSI crosses above 70
+                # RSI crosses above 20
                 (qtpylib.crossed_below(dataframe['rsi_slow'], 20)) |
                  # OR price is below trend ema
                 (dataframe['low'] < dataframe['ema600'])
