@@ -14,15 +14,15 @@ Run them accordign to description. The strategies come with recommended settings
 The strategies were tested on the `1h` timeframe, from 2018-03-01 to 2020-03-01 on the following set of assets:
 ```
 [
-            "BTC/USDT",
-            "LTC/USDT",
-            "ETH/USDT",
-            "XRP/USDT",
-            "ADA/USDT",
-            "XLM/USDT",
-            "XMR/USDT",
-            "DASH/USDT"
-        ]
+    "BTC/USDT",
+    "LTC/USDT",
+    "ETH/USDT",
+    "XRP/USDT",
+    "ADA/USDT",
+    "XLM/USDT",
+    "XMR/USDT",
+    "DASH/USDT"
+]
 ```
 
 
