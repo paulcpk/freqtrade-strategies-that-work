@@ -6,7 +6,7 @@ from freqtrade.exchange import timeframe_to_minutes
 import numpy  # noqa
 
 
-class RSIDirectionalWithTrend(IStrategy):
+class RSIDirectionalWithTrendSlow(IStrategy):
 
     """
     How to use it?
