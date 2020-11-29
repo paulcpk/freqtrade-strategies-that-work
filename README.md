@@ -28,6 +28,7 @@ The strategies were tested on the `1h` timeframe, from 2018-03-01 to 2020-03-01 
 
 |  Strategy | Buy count | AVG profit % | Total profit % | Timeframe | Backtest period |
 |-----------|-----------|--------------|----------------|--------------|-----------------|
+| [EMAPriceCrossoverWithThreshold.py](https://github.com/paulcpk/freqtrade-strategies-that-work/blob/main/EMAPriceCrossoverWithThreshold.py) | 272 | 1.31 | 118.53 |  1h | 2018-03-01 to 2020-03-01 |
 | [DoubleEMACrossoverWithTrend.py](https://github.com/paulcpk/freqtrade-strategies-that-work/blob/main/DoubleEMACrossoverWithTrend.py) | 655 | 0.56 | 122.50 |  1h | 2018-03-01 to 2020-03-01 |
 | [MACDCrossoverWithTrend.py](https://github.com/paulcpk/freqtrade-strategies-that-work/blob/main/MACDCrossoverWithTrend.py) | 300 | 0.49 | 49.42 |  1h | 2018-03-01 to 2020-03-01 |
 | [RSIDirectionalWithTrendSlow.py](https://github.com/paulcpk/freqtrade-strategies-that-work/blob/main/RSIDirectionalWithTrendSlow.py) | 108 | 0.91 | 32.75 |  1h | 2018-03-01 to 2020-03-01 |
