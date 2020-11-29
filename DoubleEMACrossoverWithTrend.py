@@ -8,6 +8,10 @@ import numpy  # noqa
 class DoubleEMACrossoverWithTrend(IStrategy):
 
     """
+    DoubleEMACrossoverWithTrend
+    author@: Paul Csapak
+    github@: https://github.com/paulcpk/freqtrade-strategies-that-work
+
     How to use it?
 
     > freqtrade download-data --timeframes 1h --timerange=20180301-20200301

@@ -8,11 +8,15 @@ import numpy  # noqa
 class MACDCrossoverWithTrend(IStrategy):
 
     """
+    MACDCrossoverWithTrend
+    author@: Paul Csapak
+    github@: https://github.com/paulcpk/freqtrade-strategies-that-work
+
     How to use it?
 
     > freqtrade download-data --timeframes 1h --timerange=20180301-20200301
     > freqtrade backtesting --export trades -s MACDCrossoverWithTrend --timeframe 1h --timerange=20180301-20200301
-    > freqtrade plot-dataframe -s MACDCrossoverWithTrend --indicators1 ema200 --timeframe 1h --timerange=20180301-20200301
+    > freqtrade plot-dataframe -s MACDCrossoverWithTrend --indicators1 ema100 --timeframe 1h --timerange=20180301-20200301
 
     """
 
@@ -43,9 +47,7 @@ class MACDCrossoverWithTrend(IStrategy):
         dataframe['macdsignal'] = macd['macdsignal']
         dataframe['macdhist'] = macd['macdhist']
 
-        dataframe['ema50'] = ta.EMA(dataframe, timeperiod=50)
         dataframe['ema100'] = ta.EMA(dataframe, timeperiod=100)
-        dataframe['ema200'] = ta.EMA(dataframe, timeperiod=200)
 
         return dataframe
 
