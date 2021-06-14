@@ -5,18 +5,18 @@ import freqtrade.vendor.qtpylib.indicators as qtpylib
 import numpy  # noqa
 
 
-class EMAPriceCrossoverWithTreshold(IStrategy):
+class EMAPriceCrossoverWithThreshold(IStrategy):
 
     """
-    EMAPriceCrossoverWithTreshold
+    EMAPriceCrossoverWithThreshold
     author@: Paul Csapak
     github@: https://github.com/paulcpk/freqtrade-strategies-that-work
 
     How to use it?
 
     > freqtrade download-data --timeframes 1h --timerange=20180301-20200301
-    > freqtrade backtesting --export trades -s EMAPriceCrossoverWithTreshold --timeframe 1h --timerange=20180301-20200301
-    > freqtrade plot-dataframe -s EMAPriceCrossoverWithTreshold --indicators1 ema800 --timeframe 1h --timerange=20180301-20200301
+    > freqtrade backtesting --export trades -s EMAPriceCrossoverWithThreshold --timeframe 1h --timerange=20180301-20200301
+    > freqtrade plot-dataframe -s EMAPriceCrossoverWithThreshold --indicators1 ema800 --timeframe 1h --timerange=20180301-20200301
 
     """
 
